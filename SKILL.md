@@ -1,9 +1,9 @@
 ---
-name: reading-papers
+name: paper-reading
 description: Read and teach research papers with eight complementary modules, including a plain-language paper narrative, paragraph-level guided reading, methods, evidence, critique, and literature positioning. Produce separate module folders and reproducible offline HTML study pages. 用于论文阅读、精读、学习和讲清论文故事；局部追问只回答指定范围。
 ---
 
-# Reading papers
+# Paper reading
 
 Turn a supplied paper into an evidence-grounded study package. The default is eight modules in the user's language, with a separate folder for each. Keep analysis content in structured JSON and generate HTML through the bundled renderer, so another AI can reproduce the organization and presentation. The script formats and checks data; the calling AI reads, reasons, and writes. It does not call a model or generate an analysis by itself.
 
@@ -19,7 +19,7 @@ Turn a supplied paper into an evidence-grounded study package. The default is ei
 ## Workflow
 
 1. Read [module requirements](references/modules.md) and [evidence rules](references/evidence-rules.md). The full workflow uses all module sections. For narrative writing also read [narrative method](references/narrative.md). Read [content format](references/content-format.md) before writing JSON.
-2. Initialize a **new** paper output directory with `scripts/reading_papers.py init` (CLI examples in [README](README.md)). It copies the PDF, records its hash and creates eight module folders. If outputs already exist, inspect them and update the intended files; do not reset the user's notes.
+2. Initialize a **new** paper output directory with `scripts/paper_reading.py init` (CLI examples in [README](README.md)). It copies the PDF, records its hash and creates eight module folders. If outputs already exist, inspect them and update the intended files; do not reset the user's notes.
 3. Extract text using a local PDF reader, or the optional `extract` command. Review reading order, equations, captions, footnotes and end-of-body boundaries. For scanned pages, use an available OCR/vision tool and disclose uncertain text. Missing text is not evidence of missing content. Preserve page anchors and any image crops inside the output directory.
 4. Build `00_原文与索引/evidence-ledger.json` as described in the evidence rules. Record decisive claims, methods, numbers, denominators, assumptions and boundaries once, then reference this record across modules. Read the complete paper; extraction alone is not reading. Record actual source coverage and any unread portions.
 5. Write each module's `content.json` using the schema, plus useful supporting files when the module calls for them. Recommended drafting order: fast overview → methods/evidence → paragraph guide → critique/literature/ARS synthesis → narrative. Do not repeat the same summary under eight headings. Preserve the distinctive reasoning tasks in `modules.md`.

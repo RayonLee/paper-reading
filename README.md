@@ -1,24 +1,32 @@
-# reading-papers
+# paper-reading
 
 把一篇论文变成八种互补视角的学习材料，每个模块有独立文件夹，统一生成可离线打开的 HTML。包含独立的“论文叙事”：用通俗语言讲清作者面对什么问题、为什么这样研究、证据怎样推进论证，以及结论在哪停止。
 
+仓库与技能名称统一为 `paper-reading`，仓库地址为 [RayonLee/paper-reading](https://github.com/RayonLee/paper-reading)。
+
 ## 交给其他 AI 使用
 
-把整个 `reading-papers` 文件夹复制给能读取文件、执行 Python 的 AI 工具，然后这样说：
+把整个 `paper-reading` 文件夹复制给能读取文件、执行 Python 的 AI 工具，然后这样说：
 
-> 请先阅读 reading-papers/SKILL.md，按该流程分析这篇 PDF。用中文生成全部八个模块，使用随附脚本校验并渲染 HTML；给我开始阅读.html 的位置。
+> 请先阅读 paper-reading/SKILL.md，按该流程分析这篇 PDF。用中文生成全部八个模块，使用随附脚本校验并渲染 HTML；给我开始阅读.html 的位置。
 
-支持 Agent Skills 的工具可将整个文件夹放入该工具的技能目录。Codex 可用 `$reading-papers` 显式调用；其他工具的具体安装位置以其文档为准。不支持技能自动发现的 AI 也能直接读取 `SKILL.md` 执行。
+支持 Agent Skills 的工具可将整个文件夹放入该工具的技能目录。Codex 可用 `$paper-reading` 显式调用；其他工具的具体安装位置以其文档为准。不支持技能自动发现的 AI 也能直接读取 `SKILL.md` 执行。
 
 只有聊天能力、无法读本地文件或执行脚本的 AI，可以先按 `references/content-format.md` 生成 JSON，再在本机运行渲染命令。脚本固定目录和页面样式，论文解读仍由调用它的 AI 完成，不需要本项目专属 API 密钥。
 
+## 从旧名称迁移
+
+原 `reading-papers` 现更名为 `paper-reading`。安装时将技能文件夹命名为 `paper-reading`，Codex 的调用名称相应改为 `$paper-reading`。已有安装可先备份旧文件夹，再替换为新版本。
+
+主脚本现为 `scripts/paper_reading.py`；旧的 `scripts/reading_papers.py` 保留为兼容命令入口。已生成的学习材料仍可继续阅读和重新渲染。
+
 ## 可重复的命令
 
-在 `reading-papers` 文件夹中执行。将示例路径替换成实际路径；路径有空格时保留引号。
+在 `paper-reading` 文件夹中执行。将示例路径替换成实际路径；路径有空格时保留引号。
 
 ```sh
-python3 scripts/reading_papers.py init --paper "/path/paper.pdf" --out "/path/paper-study" --title "论文标题"
-python3 scripts/reading_papers.py extract --pdf "/path/paper.pdf" --out "/path/paper-study/00_原文与索引/pages.json"
+python3 scripts/paper_reading.py init --paper "/path/paper.pdf" --out "/path/paper-study" --title "论文标题"
+python3 scripts/paper_reading.py extract --pdf "/path/paper.pdf" --out "/path/paper-study/00_原文与索引/pages.json"
 ```
 
 初始化需要 PDF 页数：已有 pypdf 或 PyMuPDF 时可自动检测；没有这些库时可查看 PDF 阅读器并为 `init` 加 `--pages 29` 之类的实际页数。`extract` 需要已安装的 pypdf 或 PyMuPDF，也可以换用 AI 环境自己的 PDF 读取工具。提取文本不会自动生成学习报告，扫描件还需 OCR 或视觉读取。
@@ -26,8 +34,8 @@ python3 scripts/reading_papers.py extract --pdf "/path/paper.pdf" --out "/path/p
 AI 阅读原文、建立证据记录、填写每个模块的 `content.json` 并完成审读后运行：
 
 ```sh
-python3 scripts/reading_papers.py validate --out "/path/paper-study"
-python3 scripts/reading_papers.py render --out "/path/paper-study"
+python3 scripts/paper_reading.py validate --out "/path/paper-study"
+python3 scripts/paper_reading.py render --out "/path/paper-study"
 ```
 
 只生成叙事等局部内容时，可用 `validate --out "/path/paper-study" --modules 08`；它只校验指定模块，并明确整套尚未完成。

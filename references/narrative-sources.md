@@ -8,7 +8,7 @@
 | [wshobson/agents](https://github.com/wshobson/agents) 的 [data-storytelling](https://github.com/wshobson/agents/blob/9c61ab243def98f72da12abd41cfcf5bcd91af9d/plugins/business-analytics/skills/data-storytelling/SKILL.md) | 42,369 | `9c61ab243def98f72da12abd41cfcf5bcd91af9d` | MIT；采用情境—张力—发现的顺序及匹配听众语言的原则 |
 | [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) 的 [scientific-writing](https://github.com/K-Dense-AI/scientific-agent-skills/blob/2d2065fb4520fa3f3f2bcf61cff26ec8b7eba4b5/skills/scientific-writing/SKILL.md) | 56,616 | `2d2065fb4520fa3f3f2bcf61cff26ec8b7eba4b5` | MIT；比较候选，偏投稿与证据审计，未完整试用或额外引入其投稿流程 |
 
-对 Orchestra 的 What / Why / So What 应作准确理解：What 是主张，Why 是支持主张的证据理由，So What 是意义；研究动机另行解释。reading-papers 的六个叙事问题是在论文学习场景中的适配，不能把上述技能原本用于投稿或商业演示的步骤全部套入。
+对 Orchestra 的 What / Why / So What 应作准确理解：What 是主张，Why 是支持主张的证据理由，So What 是意义；研究动机另行解释。paper-reading 的六个叙事问题是在论文学习场景中的适配，不能把上述技能原本用于投稿或商业演示的步骤全部套入。
 
 ## 本地应用测试
 

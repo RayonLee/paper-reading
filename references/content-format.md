@@ -1,16 +1,16 @@
 # 可移植内容格式与命令
 
-脚本 `scripts/reading_papers.py` 使用 Python 3.10+ 标准库渲染，不依赖 Node、特定AI API、CDN或网络。PDF文本提取才需要可选的 pypdf 或 PyMuPDF。CSS存于 `assets/style.css` 并嵌入输出HTML。将整个skill文件夹一起复制；不要只复制脚本。
+脚本 `scripts/paper_reading.py` 使用 Python 3.10+ 标准库渲染，不依赖 Node、特定AI API、CDN或网络。PDF文本提取才需要可选的 pypdf 或 PyMuPDF。CSS存于 `assets/style.css` 并嵌入输出HTML。将整个skill文件夹一起复制；不要只复制脚本。
 
 ## 命令
 
 以下相对路径均以当前工作目录为准，`SKILL_DIR`指skill根目录。路径有空格时加引号。
 
 ```sh
-python3 "SKILL_DIR/scripts/reading_papers.py" init --paper "paper.pdf" --out "新输出目录" --title "论文题名" --pages 29
-python3 "SKILL_DIR/scripts/reading_papers.py" extract --pdf "新输出目录/00_原文与索引/source.pdf" --out "新输出目录/00_原文与索引/pages.json"
-python3 "SKILL_DIR/scripts/reading_papers.py" render --out "新输出目录"
-python3 "SKILL_DIR/scripts/reading_papers.py" validate --out "新输出目录"
+python3 "SKILL_DIR/scripts/paper_reading.py" init --paper "paper.pdf" --out "新输出目录" --title "论文题名" --pages 29
+python3 "SKILL_DIR/scripts/paper_reading.py" extract --pdf "新输出目录/00_原文与索引/source.pdf" --out "新输出目录/00_原文与索引/pages.json"
+python3 "SKILL_DIR/scripts/paper_reading.py" render --out "新输出目录"
+python3 "SKILL_DIR/scripts/paper_reading.py" validate --out "新输出目录"
 ```
 
 - `init` 创建8个模块的draft骨架，并复制来源PDF、记录SHA-256与页数。拒绝非空输出目录，避免覆盖笔记。若已有PDF库可省略 `--pages`；无库时须从PDF查看器确认实际物理页数后提供，记录会明确是手工指定。若安装了PDF库且手工页数不一致，命令失败。

@@ -1,13 +1,15 @@
 """Behavioral checks for the portable pipeline, using isolated temporary output."""
 import importlib.util
 import json
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'scripts' / 'reading_papers.py'
-spec = importlib.util.spec_from_file_location('reading_papers', SCRIPT)
+SCRIPT = Path(__file__).resolve().parents[1] / 'scripts' / 'paper_reading.py'
+spec = importlib.util.spec_from_file_location('paper_reading', SCRIPT)
 rp = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rp)
 
@@ -48,6 +50,18 @@ class PipelineTests(unittest.TestCase):
         self.assertIn('id="P1"', report)
         self.assertIn('<details>', report)
         self.assertIn('8 / 8', (self.out / '开始阅读.html').read_text())
+
+    def test_legacy_cli_renders_and_preserves_error_exit_code(self):
+        self.fill()
+        legacy = SCRIPT.with_name('reading_papers.py')
+        result = subprocess.run([sys.executable, str(legacy), 'render', '--out', str(self.out)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('8 / 8', (self.out / '开始阅读.html').read_text())
+        (self.out / '00_原文与索引/source.pdf').write_bytes(b'changed')
+        result = subprocess.run([sys.executable, str(legacy), 'validate', '--out', str(self.out)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2, result.stderr)
 
     def test_missing_module_and_stale_page_do_not_look_complete(self):
         self.fill()
