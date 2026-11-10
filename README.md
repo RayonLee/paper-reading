@@ -60,4 +60,4 @@ python3 -m unittest discover -s tests -v
 
 ## 来源与授权说明
 
-方法来源和分发边界见 [origins.md](references/origins.md)，叙事模块来源与试读范围见 [narrative-sources.md](references/narrative-sources.md)。`third-party-licenses/` 保留对应来源的许可证。当前仓库尚未为新增内容指定统一开源许可证；第三方 MIT 文件不代表整个项目均采用 MIT 授权。
+方法来源和分发边界见 [origins.md](references/origins.md)，叙事模块来源与试读范围见 [narrative-sources.md](references/narrative-sources.md)。`third-party-licenses/` 保留对应来源的许可证。本项目新增的技能说明、脚本与样式采用 [MIT License](LICENSE)。第三方材料保留各自的版权声明与许可证；本项目的 MIT 授权不改变上游项目的许可。
