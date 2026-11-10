@@ -1,0 +1,6 @@
+interface:
+  display_name: "Reading Papers · 论文学习"
+  short_description: "八种互补视角阅读论文，讲清论文故事，生成独立文件夹与离线 HTML 学习页面"
+  default_prompt: "使用 $reading-papers 阅读这篇论文，生成八个模块的中文学习材料和离线 HTML，并检查关键结论与原文证据。"
+policy:
+  allow_implicit_invocation: true
